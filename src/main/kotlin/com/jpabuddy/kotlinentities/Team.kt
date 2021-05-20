@@ -4,19 +4,19 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "team")
-open class Team {
+class Team (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     @Id
-    open var id: Long? = null
+    var id: Long,
 
-    @Column(name = "name")
-    open var name: String? = null
+    @Column(name = "name", nullable = false)
+    var name: String,
 
     @JoinColumn(name = "project_id")
     @OneToOne(fetch = FetchType.LAZY)
-    open var project: Project? = null
+    var project: Project,
 
     @ManyToMany(mappedBy = "teams")
-    open var teamMember: MutableList<TeamMember>? = mutableListOf()
-}
+    var teamMember: MutableList<TeamMember>? = mutableListOf()
+)

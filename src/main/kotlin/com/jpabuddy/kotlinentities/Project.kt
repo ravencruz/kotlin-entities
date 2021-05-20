@@ -4,19 +4,19 @@ import javax.persistence.*
 
 @Table(name = "project")
 @Entity
-open class Project {
+class Project (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     @Id
-    open var id: Long? = null
+    var id: Long,
 
-    @Column(name = "name")
-    open var name: String? = null
+    @Column(name = "name", nullable = false)
+    var name: String,
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "project")
-    open var team: Team? = null
+    var team: Team?,
 
     @JoinColumn(name = "client_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    open var client: Client? = null
-}
+    var client: Client,
+)
