@@ -5,14 +5,14 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "team_member")
-open class TeamMember {
+data class TeamMember(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     @Id
-    open var id: Long? = null
+    var id: Long? = null,
 
-    @Column(name = "name", nullable = false)
-    open lateinit var name: String
+    @Column(name = "name")
+    var name: String? = null,
 
     @JoinTable(
         name = "team_member_team_link",
@@ -20,6 +20,6 @@ open class TeamMember {
         inverseJoinColumns = [JoinColumn(name = "team_id")]
     )
     @ManyToMany
-    open var teams: MutableList<Team>? = mutableListOf()
+    var teams: MutableList<Team>? = mutableListOf()
 
-}
+)

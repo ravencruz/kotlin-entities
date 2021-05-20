@@ -4,15 +4,15 @@ import javax.persistence.*
 
 @Table(name = "client")
 @Entity
-open class Client {
+data class Client(
     @Column(name = "id", nullable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    open var id: Long? = null
+    var id: Long? = null,
 
-    @Column(name = "name", nullable = false)
-    open lateinit var name: String
+    @Column(name = "name")
+    var name: String? = null,
 
     @OneToMany(mappedBy = "client", orphanRemoval = true)
-    open var projects: MutableList<Project>? = mutableListOf()
-}
+    var projects: MutableList<Project>? = mutableListOf()
+)
