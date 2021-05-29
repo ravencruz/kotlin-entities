@@ -21,12 +21,21 @@ class ProjectRepositoryTest(
         private val LOGGER = LoggerFactory.getLogger(ProjectRepositoryTest::class.java)
     }
 
+    /**
+     * Despues de volverlo clase se tiene el mismo problema de que buscas un projecto y a pesar de que es lazy
+     * te lo trae el cliente asociado en un segundo request
+     * (a pesar de que pongo open en el atributo como hace y luego quita en el video)
+     */
     @Test
     internal fun projectIsInitialized() {
         val project = projectRepository.findById(1)
         assertTrue(project.isPresent)
     }
 
+    /**
+     * Hibernate uses lzy references as it is expected !! ?????? WTF
+     *
+     */
     @Test
     internal fun lazyLoadEnabled() {
         val project = projectRepository.findById(1).get()
@@ -35,12 +44,22 @@ class ProjectRepositoryTest(
         assertTrue(HibernateProxy::class.java.isAssignableFrom(client::class.java))
     }
 
-    @Test
-    internal fun equalsIssue() {
-        val project = projectRepository.findById(1).get()
-        assertTrue(project == project.copy())
-    }
+    /**
+     * somehow equals was being called and equals is based an all field from primary constructor
+     * so we remove that
+     */
+//    @Test
+//    internal fun equalsIssue() {
+//        val project = projectRepository.findById(1).get()
+//        assertTrue(project == project.copy())
+//    }
 
+    /**
+     * Pero que pasa si lo usamos como clave en un map
+     * este problema es parecido a que si lo tuvieramos en loombok
+     *
+     * el jpa plugin es el que crea constructores vacios por defecto
+     */
     @Test
     internal fun hashCodeIsConsistent() {
         val awesomeProject = Project().apply {
