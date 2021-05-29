@@ -3,8 +3,8 @@ services:
   db-project:
     image: postgres:10.5
     environment:
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=projects
+      - POSTGRES_PASSWORD=postgres
     ports:
       - 5432:5432
     volumes:

@@ -22,10 +22,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.flywaydb</groupId>-->
+<!--            <artifactId>flyway-core</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
@@ -86,16 +86,16 @@
                     </dependency>
                 </dependencies>
             </plugin>
-            <plugin>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-maven-plugin</artifactId>
-                <version>7.9.1</version>
-                <configuration>
-                    <url>jdbc:postgresql://localhost:5432/projects</url>
-                    <user>postgres</user>
-                    <password>postgres</password>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.flywaydb</groupId>-->
+<!--                <artifactId>flyway-maven-plugin</artifactId>-->
+<!--                <version>7.9.1</version>-->
+<!--                <configuration>-->
+<!--                    <url>jdbc:postgresql://localhost:5432/projects</url>-->
+<!--                    <user>projects</user>-->
+<!--                    <password>postgres</password>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 
